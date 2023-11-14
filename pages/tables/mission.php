@@ -28,7 +28,10 @@
         <a href="../../index.html" class="nav-link">Accueil</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="planets.html" class="nav-link">Planètes</a>
+        <a href="Planet.php" class="nav-link">Planètes</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="astronaute.php" class="nav-link">Astronautes</a>
       </li>
     </ul>
 
@@ -211,27 +214,14 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="mission.php" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Missions
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../kanban.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Affectation</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="simple.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                  <p>Suivie</p>
-                </a>
-              </li>
-            </ul>
+            
           </li>
 
           
@@ -239,7 +229,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
-                Astronautes
+                Equipage
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -286,7 +276,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Planètes</h1>
+            <h1>Missions</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -294,19 +284,82 @@
               <li class="breadcrumb-item active">Planètes</li>
             </ol>
           </div>
+          
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Planétes</h3>
-        </div>
-        <!-- /.card-header -->
+
         <div class="card-body">
-          <div id="jsGrid1"></div>
+          <?php
+$connection = mysqli_connect("localhost", "root", "", "planètes");
+
+if (!$connection) {
+    die("Erreur de connexion à la base de données : " . mysqli_connect_error());
+}
+
+$query = "SELECT * FROM mission";
+$result = mysqli_query($connection, $query);
+
+if (!$result) {
+    die("Erreur lors de l'exécution de la requête : " . mysqli_error($connection));
+}
+
+
+
+echo "<table>";
+echo "<tr>";
+echo "<th>Id</th>";
+echo "<th>Nom</th>";
+echo "<th>Vaisseau</th>";
+echo "<th>Astronaute</th>";
+echo "<th>Début</th>";
+echo "<th>Fin</th>";
+echo "<th>Status</th>";
+// Ajoutez d'autres en-têtes de colonnes si nécessaire
+echo "</tr>";
+
+
+while ($row = mysqli_fetch_assoc($result)) {
+  echo "<br>";
+    echo "<tr>";
+    echo "<td>" . $row['ID'] . "</td>";
+    echo "<td>" . $row['Nom'] . "</td>";
+    echo "<td>" . $row['Vaisseaux'] . "</td>";
+    echo "<td>" . $row['Astronautes'] . "</td>";
+    echo "<td>" . $row['Planètes'] . "</td>";
+    echo "<td>" . $row['Début'] . "</td>";
+    echo "<td>" . $row['Fin'] . "</td>";
+    echo "<td>" . $row['Status'] . "</td>";
+    // Affichez d'autres colonnes si nécessaire
+    echo "</tr>";
+}
+
+echo "</table>";
+
+mysqli_close($connection);
+echo "<h3>Créer une mission <h3>";
+echo"<form action='création.php' method='POST'>";
+  echo"<label for='Nom'>Nom :</label>";
+  echo"<input type='text' name='Nom' required>";
+  echo "<br>";
+  echo"<label for='Vaisseaux'>Vaisseau :</label>";
+  echo"<input type='text' name='Vaisseaux' required>";
+  echo "<br>";
+  echo"<label for='Astronautes'>Astronautes:</label>";
+  echo"<input type='text' name='Astronautes' required>";
+  echo "<br>";
+  echo"<label for='Planètes'>Planète:</label>";
+  echo"<input type='text' name='Planètes' required>";
+  echo "<br>";
+  
+  
+ echo" <input type='submit' value='Ajouter'>";
+echo"</form>";
+
+?>
         </div>
         <!-- /.card-body -->
       </div>
@@ -327,40 +380,10 @@
   </aside>
   <!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- jsGrid -->
-<script src="../../plugins/jsgrid/demos/db.js"></script>
-<script src="../../plugins/jsgrid/jsgrid.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-<!-- Page specific script -->
-<script>
-  $(function () {
-    $("#jsGrid1").jsGrid({
-        height: "100%",
-        width: "100%",
 
-        sorting: true,
-        paging: true,
+  
 
-        data: db.clients,
 
-        fields: [
-            { name: "Nom", type: "text", width: 150 },
-            { name: "Distance", type: "number", width: 50 },
-            { name: "Nature", type: "text", width: 200 },
-            { name: "Caractéristiques", type: "select", items: db.countries, valueField: "Id", textField: "Nom" },
-            { name: "Status", type: "checkbox", title: "Découvert" }
-        ]
-    });
-  });
-</script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 // Récupération de l'élément div 
 const apodContainer = document.getElementById('apod-container');  
 // Appel à l'API APOD de la NASA 
-fetch('https://api.nasa.gov/planetary/apod?api_key=VOTRE_API_KEY') 
+fetch('https://api.nasa.gov/planetary/apod?api_key=HEAODLN093dZQt3Mxge505ZBz6nzVyiojnGPIhgR') 
 .then(response => response.json()) 
 .then(data => {     if (data.media_type == "image") {       
 // Création de l'élément image et ajout des attributs       
