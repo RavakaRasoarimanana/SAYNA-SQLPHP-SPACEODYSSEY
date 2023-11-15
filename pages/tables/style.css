@@ -1,0 +1,19 @@
+.tableau{
+width: 100%;
+overflow-x: auto;}
+table{width: 100%;
+border-collapse: collapse;}
+th, td{padding: 10px;
+text-align: left;}
+th{background-color: #f2f2f2;}
+td{border-bottom: 1px solid #CCC;}
+.formulaire{background-color:#f2f2f2;
+margin: 20px;
+padding: 20px;
+size: 1px;
+color: black;
+display: flex;
+justify-content:center;
+flex-direction: column;
+}
+.formulaire input{display: flex;}

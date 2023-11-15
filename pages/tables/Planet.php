@@ -10,6 +10,8 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- jsGrid -->
+  <link rel="stylesheet" href="style.css">
+
   <link rel="stylesheet" href="../../plugins/jsgrid/jsgrid.min.css">
   <link rel="stylesheet" href="../../plugins/jsgrid/jsgrid-theme.min.css">
   <!-- Theme style -->
@@ -292,7 +294,7 @@
     <!-- Main content -->
     <section class="content">
 
-        <div class="card-body">
+        <div class="tableau">
           <?php
 $connection = mysqli_connect("localhost", "root", "", "planètes");
 
@@ -335,7 +337,9 @@ while ($row = mysqli_fetch_assoc($result)) {
 echo "</table>";
 
 mysqli_close($connection);
-echo "<h3>Ajouter une planète<h3>";
+echo "<div class='formulaire'>";
+echo "Ajouter une planète";
+echo "<br>";
 echo"<form action='enregistrement.php' method='POST'>";
   echo"<label for='Nom'>Nom :</label>";
   echo"<input type='text' name='Nom' required>";
@@ -353,6 +357,7 @@ echo"<form action='enregistrement.php' method='POST'>";
 
  echo" <input type='submit' value='Ajouter'>";
 echo"</form>";
+echo "</div>";
 
 ?>
         </div>

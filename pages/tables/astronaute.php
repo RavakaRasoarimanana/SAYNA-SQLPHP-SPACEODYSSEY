@@ -10,6 +10,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- jsGrid -->
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="../../plugins/jsgrid/jsgrid.min.css">
   <link rel="stylesheet" href="../../plugins/jsgrid/jsgrid-theme.min.css">
   <!-- Theme style -->
@@ -305,7 +306,7 @@
     <!-- Main content -->
     <section class="content">
 
-        <div class="card-body">
+        <div class="tableau">
           <?php
 $connection = mysqli_connect("localhost", "root", "", "planètes");
 

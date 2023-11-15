@@ -10,6 +10,8 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- jsGrid -->
+  <link rel="stylesheet" href="style.css">
+
   <link rel="stylesheet" href="../../plugins/jsgrid/jsgrid.min.css">
   <link rel="stylesheet" href="../../plugins/jsgrid/jsgrid-theme.min.css">
   <!-- Theme style -->
@@ -292,7 +294,7 @@
     <!-- Main content -->
     <section class="content">
 
-        <div class="card-body">
+        <div class="tableau">
           <?php
 $connection = mysqli_connect("localhost", "root", "", "planètes");
 
@@ -315,6 +317,7 @@ echo "<th>Id</th>";
 echo "<th>Nom</th>";
 echo "<th>Vaisseau</th>";
 echo "<th>Astronaute</th>";
+echo "<th>Planètes</th>";
 echo "<th>Début</th>";
 echo "<th>Fin</th>";
 echo "<th>Status</th>";
@@ -340,7 +343,12 @@ while ($row = mysqli_fetch_assoc($result)) {
 echo "</table>";
 
 mysqli_close($connection);
-echo "<h3>Créer une mission <h3>";
+echo "<div class='formulaire'>";
+
+echo "Créer une mission";
+echo "<br>";
+echo "<div class='formulaire'>";
+
 echo"<form action='création.php' method='POST'>";
   echo"<label for='Nom'>Nom :</label>";
   echo"<input type='text' name='Nom' required>";
@@ -358,6 +366,7 @@ echo"<form action='création.php' method='POST'>";
   
  echo" <input type='submit' value='Ajouter'>";
 echo"</form>";
+echo"</div>";
 
 ?>
         </div>
